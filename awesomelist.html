@@ -1,0 +1,2817 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Awesome List — مستكشف الموارد الذكي</title>
+  <style>
+    /* ==========================================================================
+       1. متغيرات التصميم والسمات (Design Tokens - 60 / 30 / 10 Architecture)
+       ========================================================================== */
+    :root {
+      /* الوضع الداكن التقني الحديث (Dark Mode) */
+      
+      /* 60% اللون الأساسي السائد: مساحات الخلفية والعمق الفضائي الداكن */
+      --bg-base: #171329;
+      --body-bg: radial-gradient(ellipse at 50% 0%, #231b3e 0%, #171329 70%);
+      
+      /* 30% اللون الثانوي الهيكلي: البطاقات، اللوحات، الأشرطة والحدود المصقولة */
+      --bg-surface: #29233F;
+      --bg-elevated: #342D50;
+      --bg-hover: #3E365E;
+      --bg-card: #29233F;
+      --bg-header: rgba(23, 19, 41, 0.88);
+      --bg-bottom-nav: rgba(41, 35, 63, 0.94);
+      --bg-sheet: #29233F;
+      --bg-sheet-card: #1F1934;
+      --bg-input: #1D1730;
+
+      --border-subtle: #3D355C;
+      --border-strong: #4F4575;
+      --border-focus: #FFAA5C;
+      
+      /* نصوص عالية التباين ومريحة للعين (WCAG AAA) */
+      --text-main: #F7F5FE;
+      --text-muted: #B3A9D6;
+      --text-dim: #7B7299;
+      
+      /* 10% لون التمييز البصري والتركيز الفوري */
+      --accent: #FFAA5C;
+      --accent-hover: #FFB875;
+      --accent-subtle: rgba(255, 170, 92, 0.14);
+      --accent-glow: rgba(255, 170, 92, 0.28);
+      --accent-gradient: linear-gradient(135deg, #FFAA5C 0%, #EA8735 100%);
+      --accent-btn-text: #171329;
+      
+      /* دلالات الحالات الوظيفية المستقلة تماماً عن لون الهوية (Condition 4) */
+      --success: #2DD4BF;
+      --success-subtle: rgba(45, 212, 191, 0.12);
+      --warning: #FBBF24;
+      --warning-subtle: rgba(251, 191, 36, 0.14);
+      --danger: #F87171;
+      --danger-subtle: rgba(248, 113, 113, 0.16);
+      
+      --highlight-bg: rgba(255, 170, 92, 0.28);
+      --highlight-text: #FFAA5C;
+
+      /* مقاييس هندسية */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 22px;
+      --radius-full: 9999px;
+      
+      /* ظلال هادئة متعددة الطبقات للوضع الداكن */
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.03);
+      --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      --shadow-lg: 0 16px 36px -4px rgba(0, 0, 0, 0.60), 0 0 0 1px rgba(255, 255, 255, 0.06);
+
+      --sidebar-width: 290px;
+      --header-height: 68px;
+      --mobile-bottom-nav-height: 64px;
+      --transition-speed: 0.22s;
+    }
+
+    /* الوضع الفاتح المتناغم بنسبة 60 / 30 / 10 (Light Mode) */
+    :root[data-theme="light"] {
+      /* 60% اللون السائد والمهيمن: بنفسجي جليدي ناصع ومريح للعين وليس أبيض ساطعاً */
+      --bg-base: #F5F3FF;
+      --body-bg: linear-gradient(180deg, #EDE9FE 0%, #F5F3FF 55%);
+      
+      /* 30% اللون الثانوي الهيكلي: أبيض بلوري نقي وأسطح رمادية بنفسجية مصقولة */
+      --bg-surface: #FFFFFF;
+      --bg-elevated: #EDE9FE;
+      --bg-hover: #F2EEFD;
+      --bg-card: #FFFFFF;
+      --bg-header: rgba(245, 243, 255, 0.90);
+      --bg-bottom-nav: rgba(255, 255, 255, 0.95);
+      --bg-sheet: #FFFFFF;
+      --bg-sheet-card: #F7F5FE;
+      --bg-input: #FFFFFF;
+
+      --border-subtle: #E2DDF6;
+      --border-strong: #CEC6EC;
+      --border-focus: #EA8735;
+      
+      /* نصوص تحقق معايير WCAG AAA بتباين فائق */
+      --text-main: #1E1438;
+      --text-muted: #5A5178;
+      --text-dim: #796F98;
+      
+      /* 10% لون التمييز البصري والتركيز الفوري */
+      --accent: #EA8735;
+      --accent-hover: #D67425;
+      --accent-subtle: rgba(234, 135, 53, 0.12);
+      --accent-glow: rgba(234, 135, 53, 0.25);
+      --accent-gradient: linear-gradient(135deg, #F39343 0%, #EA8735 100%);
+      --accent-btn-text: #150D2A;
+      
+      /* دلالات الحالات الوظيفية المستقلة تماماً (Condition 4) */
+      --success: #0D9488;
+      --success-subtle: rgba(13, 148, 136, 0.10);
+      --warning: #D97706;
+      --warning-subtle: rgba(217, 119, 6, 0.10);
+      --danger: #DC2626;
+      --danger-subtle: rgba(220, 38, 38, 0.08);
+
+      --highlight-bg: rgba(234, 135, 53, 0.20);
+      --highlight-text: #9A3412;
+      
+      /* ظلال ناعمة بلمسة خافتة للألوان */
+      --shadow-sm: 0 1px 3px rgba(45, 30, 80, 0.06), 0 1px 2px -1px rgba(45, 30, 80, 0.04);
+      --shadow-md: 0 4px 16px -2px rgba(45, 30, 80, 0.08), 0 2px 6px -2px rgba(45, 30, 80, 0.04);
+      --shadow-lg: 0 16px 36px -4px rgba(45, 30, 80, 0.12), 0 4px 12px -2px rgba(45, 30, 80, 0.06);
+    }
+
+    /* ==========================================================================
+       2. التهيئة العامة ودعم تقليل الحركة (Base & Accessibility)
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* دعم تقليل الحركة للمستخدمين الذين يفضلون ذلك (Condition 5) */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-height) + 16px);
+      height: 100%;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      background-image: var(--body-bg);
+      background-attachment: fixed;
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", "Noto Sans Arabic", Tahoma, sans-serif;
+      line-height: 1.6;
+      min-height: 100%;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      overscroll-behavior-y: contain;
+    }
+
+    /* انتقال لوني سلس بين الوضعين لجميع العناصر الرئيسية (Condition 4.5) */
+    body,
+    .app-header,
+    .sidebar,
+    .control-bar,
+    .main-viewport,
+    .welcome-hero,
+    .category-section,
+    .resource-card,
+    .bottom-sheet,
+    .mobile-bottom-bar,
+    .search-box,
+    .action-btn,
+    .toc-item,
+    .link-chip {
+      transition: background-color var(--transition-speed) ease,
+                  border-color var(--transition-speed) ease,
+                  color var(--transition-speed) ease,
+                  box-shadow var(--transition-speed) ease;
+    }
+
+    /* تخصيص أنيق لشريط التمرير يتناسب مع نظام الألوان البنفسجي */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-strong);
+      border-radius: var(--radius-full);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      user-select: none;
+      touch-action: manipulation;
+    }
+
+    button:focus-visible, a:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      touch-action: manipulation;
+    }
+
+    /* كلاس الإخفاء العام */
+    .is-hidden {
+      display: none !important;
+    }
+
+    /* تظليل نتائج البحث */
+    mark.search-highlight {
+      background-color: var(--highlight-bg);
+      color: var(--highlight-text);
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       3. شريط التطبيق العلوي (Top App Bar - Condition 2 Optimized)
+       ========================================================================== */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--header-height);
+      background-color: var(--bg-header);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    :root[data-theme="light"] .app-header {
+      background-color: var(--bg-header);
+    }
+
+    .header-container {
+      max-width: 1540px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* هوية التطبيق */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: var(--accent-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-btn-text);
+      font-weight: 900;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    /* شريط البحث المكتبي */
+    .search-wrapper {
+      flex: 1;
+      max-width: 520px;
+      position: relative;
+    }
+
+    .search-box {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 0 14px;
+      height: 44px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-box:focus-within {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+      background-color: var(--bg-surface);
+    }
+
+    .search-icon {
+      color: var(--text-dim);
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .search-clear-btn {
+      color: var(--text-dim);
+      padding: 6px;
+      border-radius: var(--radius-full);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: color var(--transition-speed);
+    }
+
+    .search-clear-btn:hover {
+      color: var(--text-main);
+    }
+
+    .search-shortcut-badge {
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      margin-right: 6px;
+      font-family: monospace;
+      user-select: none;
+    }
+
+    /* أزرار التحكم في الهيدر */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .action-btn {
+      min-width: 44px;
+      height: 44px;
+      padding: 0 14px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .action-btn:hover:not(:disabled) {
+      background-color: var(--bg-elevated);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    :root[data-theme="light"] .action-btn:hover:not(:disabled) {
+      color: #9A4004;
+    }
+
+    .action-btn:active:not(:disabled) {
+      transform: scale(0.96);
+    }
+
+    .action-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .action-btn.icon-only {
+      padding: 0;
+      width: 44px;
+    }
+
+    .action-btn.primary {
+      background: var(--accent-gradient);
+      border: 1px solid var(--accent);
+      color: var(--accent-btn-text);
+      font-weight: 700;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+
+    .action-btn.primary:hover:not(:disabled) {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    /* زر البحث المخصص للهاتف في الهيدر */
+    .mobile-search-toggle-btn {
+      display: none;
+    }
+
+    /* شريط البحث الممتد على شاشات الهاتف */
+    .mobile-search-bar {
+      display: none;
+      padding: 8px 16px 12px;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .mobile-search-bar.is-open {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ==========================================================================
+       4. الشريط التفاعلي للاستيراد والأدوات (Desktop Control Bar)
+       ========================================================================== */
+    .control-bar {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 10px 0;
+    }
+
+    .control-container {
+      max-width: 1540px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .import-cluster {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .github-input-group {
+      display: flex;
+      align-items: center;
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      height: 40px;
+    }
+
+    .github-input-group:focus-within {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+    }
+
+    .github-input {
+      border: none;
+      background: transparent;
+      padding: 0 12px;
+      font-size: 0.86rem;
+      outline: none;
+      min-width: 240px;
+      color: var(--text-main);
+    }
+
+    .github-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .github-btn {
+      height: 100%;
+      padding: 0 14px;
+      background-color: var(--bg-elevated);
+      border-right: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      font-size: 0.84rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    .github-btn:hover {
+      background-color: var(--accent);
+      color: var(--accent-btn-text);
+    }
+
+    .hidden-file-input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    /* شريط الحالة والمسار */
+    .status-cluster {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.8rem;
+    }
+
+    .status-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--success);
+    }
+
+    /* ==========================================================================
+       5. التخطيط العام للوحة التحكم (Dashboard Layout)
+       ========================================================================== */
+    .dashboard-layout {
+      max-width: 1540px;
+      margin: 20px auto;
+      padding: 0 20px 80px;
+      display: grid;
+      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+      gap: 24px;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* الشريط الجانبي (Desktop Sidebar) */
+    .sidebar {
+      position: sticky;
+      top: calc(var(--header-height) + 16px);
+      align-self: start;
+      max-height: calc(100vh - var(--header-height) - 32px);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 12px;
+    }
+
+    .sidebar-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toc-container {
+      overflow-y: auto;
+      padding-left: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .toc-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      border-right: 3px solid transparent;
+      user-select: none;
+    }
+
+    .toc-item:hover, .toc-item:active {
+      background-color: var(--bg-elevated);
+      color: var(--text-main);
+    }
+
+    .toc-item.is-active {
+      background-color: var(--accent-subtle);
+      color: var(--accent);
+      font-weight: 700;
+      border-right-color: var(--accent);
+    }
+
+    :root[data-theme="light"] .toc-item.is-active {
+      color: #9A4004;
+    }
+
+    .toc-item.level-3 {
+      padding-right: 22px;
+      font-size: 0.83rem;
+      opacity: 0.92;
+    }
+
+    .toc-item.level-4 {
+      padding-right: 32px;
+      font-size: 0.78rem;
+      opacity: 0.85;
+    }
+
+    .toc-badge {
+      font-size: 0.74rem;
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      background-color: var(--bg-elevated);
+      color: var(--text-dim);
+    }
+
+    .toc-item.is-active .toc-badge {
+      background-color: var(--accent);
+      color: var(--accent-btn-text);
+      font-weight: 700;
+    }
+
+    /* منطقة المحتوى الرئيسية */
+    .main-viewport {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* مسار التصفح (Breadcrumbs) */
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      font-size: 0.88rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .breadcrumb-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      transition: color var(--transition-speed);
+    }
+
+    .breadcrumb-item:hover:not(.current) {
+      color: var(--accent);
+    }
+
+    :root[data-theme="light"] .breadcrumb-item:hover:not(.current) {
+      color: #9A4004;
+    }
+
+    .breadcrumb-item.current {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .breadcrumb-separator {
+      color: var(--text-dim);
+      font-size: 0.75rem;
+    }
+
+    /* شاشة الترحيب والبداية الافتراضية */
+    .welcome-hero {
+      background: linear-gradient(135deg, var(--bg-surface), var(--bg-elevated));
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hero-title {
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      font-weight: 900;
+      color: var(--text-main);
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      max-width: 780px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .feature-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .feature-icon-wrapper {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background-color: var(--accent-subtle);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    :root[data-theme="light"] .feature-icon-wrapper {
+      color: #9A4004;
+    }
+
+    .feature-card h3 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .feature-card p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    /* حاويات الفئات والأقسام */
+    .category-section {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .category-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .category-index-badge {
+      min-width: 32px;
+      height: 32px;
+      border-radius: var(--radius-md);
+      background-color: var(--accent-subtle);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      border: 1px solid var(--border-subtle);
+    }
+
+    :root[data-theme="light"] .category-index-badge {
+      color: #9A4004;
+    }
+
+    .category-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-main);
+      overflow-wrap: anywhere;
+    }
+
+    .category-header.level-3 .category-title {
+      font-size: 1rem;
+    }
+
+    .category-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .category-count {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .collapse-chevron {
+      color: var(--text-dim);
+      transition: transform var(--transition-speed);
+      display: flex;
+      align-items: center;
+    }
+
+    .category-section.is-collapsed .collapse-chevron {
+      transform: rotate(180deg);
+    }
+
+    .category-section.is-collapsed .cards-container {
+      display: none;
+    }
+
+    /* ==========================================================================
+       6. تصميم البطاقات الموحدة (Resource Cards - SaaS Elevation)
+       ========================================================================== */
+    .cards-container {
+      display: grid;
+      gap: 12px;
+    }
+
+    /* نمط الشبكة */
+    .cards-container.view-grid {
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    }
+
+    /* نمط القائمة */
+    .cards-container.view-list {
+      grid-template-columns: 1fr;
+    }
+
+    /* عنصر البطاقة الفعلي */
+    .resource-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+      position: relative;
+      text-decoration: none;
+      min-height: 120px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .resource-card:hover {
+      border-color: var(--accent);
+      background-color: var(--bg-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .resource-card:active {
+      transform: scale(0.985);
+    }
+
+    .resource-card.is-action {
+      cursor: pointer;
+    }
+
+    .card-header-area {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      justify-content: space-between;
+    }
+
+    .card-title-text {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      overflow-wrap: anywhere;
+      line-height: 1.4;
+    }
+
+    .card-type-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+    }
+
+    .resource-card.repo .card-type-icon {
+      color: #38BDF8;
+    }
+
+    :root[data-theme="light"] .resource-card.repo .card-type-icon {
+      color: #0284C7;
+    }
+
+    .resource-card.internal .card-type-icon {
+      color: var(--success);
+    }
+
+    .resource-card.no-link .card-type-icon {
+      color: var(--text-dim);
+    }
+
+    .card-body-desc {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+      flex: 1;
+    }
+
+    .card-body-desc code {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 0.82em;
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    :root[data-theme="light"] .card-body-desc code {
+      color: #9A4004;
+    }
+
+    .card-body-desc strong {
+      color: var(--text-main);
+    }
+
+    .card-footer-area {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    :root[data-theme="light"] .card-footer-area {
+      border-top-color: var(--border-subtle);
+    }
+
+    .link-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .link-chip:hover, .link-chip:active {
+      background-color: var(--accent-subtle);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    :root[data-theme="light"] .link-chip:hover, :root[data-theme="light"] .link-chip:active {
+      color: #9A4004;
+    }
+
+    /* مؤشر التحميل والشاشة الفارغة */
+    .skeleton-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+      gap: 12px;
+      padding: 16px 0;
+    }
+
+    .skeleton-card {
+      height: 120px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(90deg, var(--bg-surface) 25%, var(--bg-elevated) 50%, var(--bg-surface) 75%);
+      background-size: 200% 100%;
+      animation: pulse-shimmer 1.5s infinite;
+      border: 1px solid var(--border-subtle);
+    }
+
+    @keyframes pulse-shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .toast-alert {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      background-color: var(--danger-subtle);
+      border: 1px solid var(--danger);
+      color: var(--danger);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    :root[data-theme="light"] .toast-alert {
+      color: #991B1B;
+    }
+
+    /* ==========================================================================
+       7. شريط التنقل السفلي المخصص لتجربة الهاتف (Condition 2 Optimized)
+       ========================================================================== */
+    .mobile-bottom-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 70;
+      height: calc(var(--mobile-bottom-nav-height) + env(safe-area-inset-bottom, 0px));
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      background-color: var(--bg-bottom-nav);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border-subtle);
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    :root[data-theme="light"] .mobile-bottom-bar {
+      background-color: var(--bg-bottom-nav);
+    }
+
+    .mobile-tab-btn {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      position: relative;
+      transition: color var(--transition-speed);
+    }
+
+    .mobile-tab-btn:active {
+      transform: scale(0.92);
+    }
+
+    .mobile-tab-btn.is-active {
+      color: var(--accent);
+    }
+
+    .mobile-tab-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .tab-badge-counter {
+      position: absolute;
+      top: 6px;
+      right: calc(50% - 18px);
+      background-color: var(--accent);
+      color: var(--accent-btn-text);
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 1px 5px;
+      border-radius: var(--radius-full);
+      min-width: 16px;
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       8. الأدراج المنبثقة من الأسفل كـ Bottom Sheet أصلية
+       ========================================================================== */
+    .sheet-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background-color: rgba(15, 12, 26, 0.65);
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+
+    .sheet-backdrop.is-open {
+      display: block;
+      opacity: 1;
+    }
+
+    .bottom-sheet {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      max-height: 85vh;
+      background-color: var(--bg-sheet);
+      border-top-left-radius: var(--radius-xl);
+      border-top-right-radius: var(--radius-xl);
+      padding: 14px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+      box-shadow: var(--shadow-lg);
+      transform: translateY(100%);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .sheet-backdrop.is-open .bottom-sheet {
+      transform: translateY(0);
+    }
+
+    .sheet-handle {
+      width: 44px;
+      height: 5px;
+      background-color: var(--border-strong);
+      border-radius: var(--radius-full);
+      margin: 0 auto 4px;
+    }
+
+    .sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .sheet-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .sheet-body {
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* خيارات الاستيراد داخل الـ Sheet */
+    .sheet-action-card {
+      background-color: var(--bg-sheet-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sheet-action-card h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       9. استجابة التصميم للهواتف والشاشات الصغيرة (Mobile Experience)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      :root {
+        --header-height: 60px;
+      }
+
+      /* تعديل تخطيط الصفحة للهاتف */
+      .dashboard-layout {
+        grid-template-columns: 1fr;
+        margin: 12px auto;
+        padding: 0 12px calc(var(--mobile-bottom-nav-height) + 24px + env(safe-area-inset-bottom, 0px));
+      }
+
+      /* إخفاء الشريط الجانبي الثابت وشريط الاستيراد المكتبي */
+      .sidebar, .control-bar {
+        display: none !important;
+      }
+
+      /* تفعيل شريط التنقل السفلي */
+      .mobile-bottom-bar {
+        display: flex;
+      }
+
+      /* تعديل الهيدر على الموبايل ليصبح Compact */
+      .header-container {
+        padding: 0 12px;
+      }
+
+      .brand-subtitle, .search-shortcut-badge, .search-wrapper {
+        display: none !important;
+      }
+
+      .mobile-search-toggle-btn {
+        display: inline-flex;
+      }
+
+      .header-actions .action-btn.primary {
+        display: none; /* يتم رفع الملف عبر القائمة السفلية */
+      }
+
+      /* تحسين حجم وتنسيق بطاقات الترحيب */
+      .welcome-hero {
+        padding: 22px 16px;
+        border-radius: var(--radius-lg);
+      }
+
+      .category-section {
+        padding: 16px 14px;
+        border-radius: var(--radius-md);
+      }
+
+      .category-title {
+        font-size: 1.05rem;
+      }
+
+      .category-index-badge {
+        min-width: 28px;
+        height: 28px;
+        font-size: 0.78rem;
+      }
+
+      /* الكروت على الموبايل تأخذ العرض الكامل بشكل أنيق */
+      .cards-container.view-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-card {
+        padding: 14px;
+        min-height: auto;
+      }
+
+      .link-chip {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       شريط التنقل العلوي المدمج (App Header)
+       ========================================================================== -->
+  <header class="app-header">
+    <div class="header-container">
+      
+      <!-- هوية التطبيق -->
+      <div class="brand" id="brandBtn" title="العودة للصفحة الرئيسية">
+        <div class="brand-logo">A</div>
+        <div class="brand-info">
+          <span class="brand-title">Awesome List</span>
+          <span class="brand-subtitle">مستكشف الموارد الذكي</span>
+        </div>
+      </div>
+
+      <!-- محرك البحث المركزي (للشاشات الكبيرة) -->
+      <div class="search-wrapper">
+        <div class="search-box">
+          <span class="search-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <input id="searchInputDesktop" class="search-input" type="search" placeholder="ابحث عن مورد، تقنية، أو فئة..." disabled autocomplete="off" spellcheck="false">
+          <span class="search-shortcut-badge">/</span>
+          <button id="searchClearBtnDesktop" class="search-clear-btn" type="button" aria-label="مسح البحث">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- أزرار الإجراءات في الهيدر -->
+      <div class="header-actions">
+        <!-- زر فتح البحث في الهاتف -->
+        <button id="mobileSearchToggleBtn" class="action-btn icon-only mobile-search-toggle-btn" type="button" aria-label="بحث">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <!-- زر الرجوع للمستند السابق -->
+        <button id="backBtn" class="action-btn icon-only" type="button" disabled title="رجوع للمستند السابق">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- زر تبديل الوضع (داكن / فاتح) -->
+        <button id="themeToggle" class="action-btn icon-only" type="button" title="تبديل مظهر الصفحة">
+          <svg id="moonIcon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg id="sunIcon" class="is-hidden" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- زر رفع ملف مخصص (ديسكتوب) -->
+        <button id="uploadTriggerBtn" class="action-btn primary" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"></path>
+          </svg>
+          <span>رفع ملف</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- شريط بحث الهاتف المنسدل عند الحاجة -->
+    <div id="mobileSearchBar" class="mobile-search-bar">
+      <div class="search-box" style="flex: 1;">
+        <span class="search-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </span>
+        <input id="searchInputMobile" class="search-input" type="search" placeholder="ابحث في القائمة..." autocomplete="off" spellcheck="false">
+        <button id="searchClearBtnMobile" class="search-clear-btn" type="button" aria-label="مسح">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <button id="closeMobileSearchBtn" class="action-btn icon-only" type="button" aria-label="إغلاق البحث">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- حقل الملف الخفي العام -->
+  <input id="fileInput" class="hidden-file-input" type="file" accept=".md,.markdown,.txt">
+
+  <!-- ==========================================================================
+       الشريط التفاعلي المكتبي الثانوي (Desktop Only Control Bar)
+       ========================================================================== -->
+  <section class="control-bar">
+    <div class="control-container">
+      <div class="import-cluster">
+        <div class="github-input-group">
+          <input id="githubRepoInputDesktop" class="github-input" type="text" placeholder="مستودع GitHub (مثال: vinta/awesome-python)" aria-label="رابط مستودع GitHub">
+          <button id="openGithubBtnDesktop" class="github-btn" type="button">فتح المستودع</button>
+        </div>
+        <button id="restoreSessionBtnDesktop" class="action-btn is-hidden" type="button" style="height: 40px; font-size: 0.82rem;">
+          استعادة آخر ملف
+        </button>
+      </div>
+      <div class="status-cluster">
+        <span class="status-badge">
+          <span class="dot"></span>
+          <span id="desktopStatusText">جاهز لاستعراض الملفات</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       التخطيط الرئيسي (Dashboard Viewport)
+       ========================================================================== -->
+  <div class="dashboard-layout">
+    
+    <!-- الشريط الجانبي (Desktop Sidebar TOC) -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          فهرس الفئات
+        </span>
+        <span id="desktopTocBadge" class="toc-badge">0</span>
+      </div>
+      <nav id="desktopToc" class="toc-container" aria-label="فهرس الفئات الرئيسي">
+        <span style="font-size: 0.85rem; color: var(--text-dim); padding: 10px 0;">سيظهر الفهرس الهرمي بعد تحميل الملف.</span>
+      </nav>
+    </aside>
+
+    <!-- منطقة المحتوى الرئيسية -->
+    <main id="mainContent" class="main-viewport">
+      
+      <!-- رسائل الخطأ والتنبيهات المباشرة -->
+      <div id="alertContainer" class="is-hidden"></div>
+
+      <!-- مسار التصفح الهرمي -->
+      <nav id="breadcrumbNav" class="breadcrumbs is-hidden" aria-label="مسار التصفح"></nav>
+
+      <!-- مؤشر التحميل البصري (Skeleton Loading) -->
+      <div id="skeletonLoader" class="skeleton-wrapper is-hidden">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+
+      <!-- شاشة الترحيب والبداية الافتراضية -->
+      <section id="welcomeScreen" class="welcome-hero">
+        <div class="hero-heading">
+          <h1 class="hero-title">مستكشف قوائم Awesome 📱</h1>
+          <p class="hero-desc">تصفّح مكتبات الموارد البرمجية والتقنية بتجربة تطبيق أصلي سلس وسريع. ارفع ملف Markdown أو استورد مباشرة من مستودعات GitHub دون مغادرة الصفحة.</p>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button id="heroUploadBtn" class="action-btn primary" type="button" style="height: 46px; padding: 0 18px; border-radius: var(--radius-md);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"></path>
+            </svg>
+            <span>اختيار ملف من جهازك</span>
+          </button>
+
+          <button id="heroGithubBtn" class="action-btn" type="button" style="height: 46px; padding: 0 16px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            <span>فتح مستودع GitHub</span>
+          </button>
+        </div>
+
+        <div class="features-grid" style="margin-top: 10px;">
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3>قراءة محلية آمنة</h3>
+            <p>معالجة فورية داخل متصفحك دون إرسال ملفاتك لأي خادم.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h3>بحث وتطبيع عربي</h3>
+            <p>مطابقة فورية تتجاهل التشكيل والهمزات مع تمييز العبارات.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- الحاوية الديناميكية للأقسام والبطاقات -->
+      <div id="renderedSectionsContainer" class="is-hidden" style="display: flex; flex-direction: column; gap: 16px;"></div>
+
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       شريط التنقل السفلي للهواتف (Native Mobile Bottom Navigation Bar)
+       ========================================================================== -->
+  <nav class="mobile-bottom-bar" aria-label="التنقل الرئيسي للهاتف">
+    <!-- تبويب الرئيسية -->
+    <button id="mobileTabHome" class="mobile-tab-btn is-active" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+      </svg>
+      <span>الرئيسية</span>
+    </button>
+
+    <!-- تبويب الفئات (يفتح الدرج المنزلق) -->
+    <button id="mobileTabCategories" class="mobile-tab-btn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+      </svg>
+      <span>الفئات</span>
+      <span id="mobileTocCountBadge" class="tab-badge-counter is-hidden">0</span>
+    </button>
+
+    <!-- تبويب استيراد (يفتح درج الاستيراد من ملف أو GitHub) -->
+    <button id="mobileTabImport" class="mobile-tab-btn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"></path>
+      </svg>
+      <span>استيراد</span>
+    </button>
+
+    <!-- تبويب العرض والمظهر -->
+    <button id="mobileTabView" class="mobile-tab-btn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path>
+      </svg>
+      <span>الإعدادات</span>
+    </button>
+  </nav>
+
+  <!-- ==========================================================================
+       الدرج المنزلق 1: فهرس الفئات (Categories Bottom Sheet)
+       ========================================================================== -->
+  <div id="categoriesSheetBackdrop" class="sheet-backdrop">
+    <div class="bottom-sheet" role="dialog" aria-modal="true" aria-label="فهرس الفئات">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <h3 class="sheet-title">تصفّح الفئات</h3>
+        <button id="closeCategoriesSheetBtn" class="action-btn icon-only" type="button" aria-label="إغلاق">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div id="mobileCategoriesList" class="sheet-body">
+        <span style="font-size: 0.9rem; color: var(--text-dim); text-align: center; padding: 20px 0;">لم يتم تحميل ملف بعد لعرض الفئات.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       الدرج المنزلق 2: الاستيراد والعمليات (Import & GitHub Bottom Sheet)
+       ========================================================================== -->
+  <div id="importSheetBackdrop" class="sheet-backdrop">
+    <div class="bottom-sheet" role="dialog" aria-modal="true" aria-label="خيارات الاستيراد">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <h3 class="sheet-title">استيراد وفتح الموارد</h3>
+        <button id="closeImportSheetBtn" class="action-btn icon-only" type="button" aria-label="إغلاق">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="sheet-body">
+        
+        <!-- بطاقة رفع الملف المحلي -->
+        <div class="sheet-action-card">
+          <h4>📂 اختيار ملف من الهاتف</h4>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">يدعم صيغ .md أو .markdown أو .txt، وتتم قراءته محلياً على هاتفك دون استهلاك للإنترنت.</p>
+          <button id="mobileUploadBtn" class="action-btn primary" type="button" style="height: 44px; width: 100%;">
+            اختر ملف Markdown
+          </button>
+        </div>
+
+        <!-- بطاقة استيراد من GitHub -->
+        <div class="sheet-action-card">
+          <h4>🌐 استيراد من GitHub</h4>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">أدخل اسم المستودع بصيغة owner/repo أو الصق الرابط كاملاً.</p>
+          <div style="display: flex; gap: 8px;">
+            <input id="githubRepoInputMobile" class="github-input" type="text" placeholder="مثال: vinta/awesome-python" style="flex: 1; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); height: 42px; padding: 0 12px;">
+            <button id="openGithubBtnMobile" class="action-btn primary" type="button" style="height: 42px; padding: 0 16px;">فتح</button>
+          </div>
+        </div>
+
+        <!-- بطاقة استعادة الجلسة -->
+        <div id="restoreSessionCardMobile" class="sheet-action-card is-hidden">
+          <h4>🔄 استعادة آخر جلسة</h4>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">يوجد ملف محفوظ من تصفحك السابق، يمكنك استعادته بضغطة زر.</p>
+          <button id="restoreSessionBtnMobile" class="action-btn" type="button" style="height: 42px; width: 100%;">استعادة الملف المحفوظ</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       الدرج المنزلق 3: الإعدادات والمظهر (Settings Bottom Sheet)
+       ========================================================================== -->
+  <div id="settingsSheetBackdrop" class="sheet-backdrop">
+    <div class="bottom-sheet" role="dialog" aria-modal="true" aria-label="الإعدادات والمظهر">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <h3 class="sheet-title">الإعدادات والمظهر</h3>
+        <button id="closeSettingsSheetBtn" class="action-btn icon-only" type="button" aria-label="إغلاق">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="sheet-body">
+        
+        <!-- خيار تبديل النمط (داكن / فاتح) -->
+        <div class="sheet-action-card" style="flex-direction: row; justify-content: space-between; align-items: center;">
+          <div>
+            <h4>المظهر الداكن (Dark Mode)</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">تبديل بين الوضع الليلي والنهاري</p>
+          </div>
+          <button id="themeToggleSheet" class="action-btn icon-only" type="button" aria-label="تبديل الوضع">
+            ☀️
+          </button>
+        </div>
+
+        <!-- خيار طريقة العرض (شبكة / قائمة) -->
+        <div class="sheet-action-card" style="flex-direction: row; justify-content: space-between; align-items: center;">
+          <div>
+            <h4>طريقة عرض البطاقات</h4>
+            <p id="viewModeLabelMobile" style="font-size: 0.8rem; color: var(--text-muted);">الوضع الحالي: شبكة</p>
+          </div>
+          <button id="viewModeToggleSheet" class="action-btn" type="button" style="padding: 0 14px; height: 38px;">
+            تبديل العرض
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       المحرك البرمجي الشامل (JavaScript Engine)
+       ========================================================================== -->
+  <script>
+    'use strict';
+
+    /* --------------------------------------------------------------------------
+       1. حالة التطبيق المركزية (Central AppState)
+       -------------------------------------------------------------------------- */
+    const AppState = {
+      theme: localStorage.getItem('awesome_theme') || 'dark',
+      viewMode: localStorage.getItem('awesome_view_mode') || 'grid',
+      currentDoc: null,
+      navStack: [],
+      sections: [],
+      allCardItems: [],
+      searchQuery: '',
+      activeSectionId: null,
+      abortController: null,
+    };
+
+    /* --------------------------------------------------------------------------
+       2. مراجع عناصر DOM
+       -------------------------------------------------------------------------- */
+    const DOM = {
+      html: document.documentElement,
+      brandBtn: document.getElementById('brandBtn'),
+      themeToggle: document.getElementById('themeToggle'),
+      sunIcon: document.getElementById('sunIcon'),
+      moonIcon: document.getElementById('moonIcon'),
+      backBtn: document.getElementById('backBtn'),
+      fileInput: document.getElementById('fileInput'),
+      uploadTriggerBtn: document.getElementById('uploadTriggerBtn'),
+      heroUploadBtn: document.getElementById('heroUploadBtn'),
+      heroGithubBtn: document.getElementById('heroGithubBtn'),
+
+      // بحث الديسكتوب
+      searchInputDesktop: document.getElementById('searchInputDesktop'),
+      searchClearBtnDesktop: document.getElementById('searchClearBtnDesktop'),
+
+      // بحث الهاتف
+      mobileSearchToggleBtn: document.getElementById('mobileSearchToggleBtn'),
+      mobileSearchBar: document.getElementById('mobileSearchBar'),
+      searchInputMobile: document.getElementById('searchInputMobile'),
+      searchClearBtnMobile: document.getElementById('searchClearBtnMobile'),
+      closeMobileSearchBtn: document.getElementById('closeMobileSearchBtn'),
+
+      // استيراد ديسكتوب
+      githubRepoInputDesktop: document.getElementById('githubRepoInputDesktop'),
+      openGithubBtnDesktop: document.getElementById('openGithubBtnDesktop'),
+      restoreSessionBtnDesktop: document.getElementById('restoreSessionBtnDesktop'),
+      desktopStatusText: document.getElementById('desktopStatusText'),
+
+      // حاويات العرض
+      desktopToc: document.getElementById('desktopToc'),
+      desktopTocBadge: document.getElementById('desktopTocBadge'),
+      mainContent: document.getElementById('mainContent'),
+      alertContainer: document.getElementById('alertContainer'),
+      breadcrumbNav: document.getElementById('breadcrumbNav'),
+      skeletonLoader: document.getElementById('skeletonLoader'),
+      welcomeScreen: document.getElementById('welcomeScreen'),
+      renderedSectionsContainer: document.getElementById('renderedSectionsContainer'),
+
+      // شريط الموبايل السفلي
+      mobileTabHome: document.getElementById('mobileTabHome'),
+      mobileTabCategories: document.getElementById('mobileTabCategories'),
+      mobileTabImport: document.getElementById('mobileTabImport'),
+      mobileTabView: document.getElementById('mobileTabView'),
+      mobileTocCountBadge: document.getElementById('mobileTocCountBadge'),
+
+      // أدراج الموبايل
+      categoriesSheetBackdrop: document.getElementById('categoriesSheetBackdrop'),
+      closeCategoriesSheetBtn: document.getElementById('closeCategoriesSheetBtn'),
+      mobileCategoriesList: document.getElementById('mobileCategoriesList'),
+
+      importSheetBackdrop: document.getElementById('importSheetBackdrop'),
+      closeImportSheetBtn: document.getElementById('closeImportSheetBtn'),
+      mobileUploadBtn: document.getElementById('mobileUploadBtn'),
+      githubRepoInputMobile: document.getElementById('githubRepoInputMobile'),
+      openGithubBtnMobile: document.getElementById('openGithubBtnMobile'),
+      restoreSessionCardMobile: document.getElementById('restoreSessionCardMobile'),
+      restoreSessionBtnMobile: document.getElementById('restoreSessionBtnMobile'),
+
+      settingsSheetBackdrop: document.getElementById('settingsSheetBackdrop'),
+      closeSettingsSheetBtn: document.getElementById('closeSettingsSheetBtn'),
+      themeToggleSheet: document.getElementById('themeToggleSheet'),
+      viewModeToggleSheet: document.getElementById('viewModeToggleSheet'),
+      viewModeLabelMobile: document.getElementById('viewModeLabelMobile')
+    };
+
+    /* --------------------------------------------------------------------------
+       3. أدوات الأمان والتطبيع
+       -------------------------------------------------------------------------- */
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, c => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[c]));
+    }
+
+    function isSafeUrl(url) {
+      if (!url) return false;
+      const t = url.trim().toLowerCase();
+      return t.startsWith('http://') || t.startsWith('https://') || t.startsWith('#') || t.startsWith('/');
+    }
+
+    function resolveUrl(raw, baseUrl) {
+      if (!raw) return '';
+      try {
+        return new URL(raw, baseUrl || window.location.href).href;
+      } catch {
+        return raw;
+      }
+    }
+
+    function generateSlug(text) {
+      return String(text || '')
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}]+/gu, '-')
+        .replace(/^-+|-+$/g, '') || 'section';
+    }
+
+    function normalizeArabic(text) {
+      if (!text) return '';
+      return String(text)
+        .toLowerCase()
+        .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g, '')
+        .replace(/[إأآا]/g, 'ا')
+        .replace(/ة/g, 'ه')
+        .replace(/[ىي]/g, 'ي')
+        .trim();
+    }
+
+    function debounce(func, delay = 180) {
+      let id;
+      return function (...args) {
+        clearTimeout(id);
+        id = setTimeout(() => func.apply(this, args), delay);
+      };
+    }
+
+    function renderSafeInlineMarkdown(text) {
+      if (!text) return '';
+      let safe = escapeHtml(text);
+      safe = safe.replace(/`([^`]+)`/g, '<code>$1</code>');
+      safe = safe.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      safe = safe.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+      safe = safe.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>');
+      safe = safe.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+      return safe;
+    }
+
+    function stripMarkdown(text) {
+      if (!text) return '';
+      return String(text)
+        .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+        .replace(/<[^>]*>/g, '')
+        .replace(/`|\*\*|__|~~/g, '')
+        .replace(/[*_]/g, '')
+        .trim();
+    }
+
+    function parseRepoInput(input) {
+      if (!input) return null;
+      let clean = input.trim();
+      const shortMatch = clean.match(/^([a-zA-Z0-9_\-\.]+)\/([a-zA-Z0-9_\-\.]+)$/);
+      if (shortMatch) {
+        return { owner: shortMatch[1], repo: shortMatch[2].replace(/\.git$/i, '') };
+      }
+      try {
+        if (!/^https?:\/\//i.test(clean)) clean = 'https://' + clean;
+        const u = new URL(clean);
+        if (!/(^|\.)github\.com$/i.test(u.hostname)) return null;
+        const parts = u.pathname.split('/').filter(Boolean);
+        if (parts.length < 2) return null;
+        return { owner: parts[0], repo: parts[1].replace(/\.git$/i, '') };
+      } catch {
+        return null;
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       4. محلل Markdown المرن
+       -------------------------------------------------------------------------- */
+    function extractLinksFromLine(line) {
+      const links = [];
+      const mdRegex = /\[([^\]]+)\]\(\s*(<[^>]+>|(?:\\.|[^\)\s])+)(?:\s+["'][^"']*["'])?\s*\)/g;
+      let match;
+      while ((match = mdRegex.exec(line)) !== null) {
+        const url = match[2].replace(/^<|>$/g, '').replace(/\\([()])/g, '$1');
+        links.push({ title: match[1].trim(), url });
+      }
+      const htmlRegex = /<a\b[^>]*href=["']([^"']+)["'][^>]*>(.*?)<\/a>/gi;
+      while ((match = htmlRegex.exec(line)) !== null) {
+        links.push({ title: stripMarkdown(match[2]) || match[1], url: match[1] });
+      }
+      return links;
+    }
+
+    function parseMarkdownSections(markdownText) {
+      const lines = markdownText.replace(/\r/g, '').split('\n');
+      const sections = [];
+      let currentSection = null;
+      let pendingBuffer = '';
+      let inCodeBlock = false;
+      let activeFenceChar = '';
+
+      const flushBuffer = () => {
+        if (pendingBuffer.trim() && currentSection) {
+          processLineItem(currentSection, pendingBuffer.trim());
+        }
+        pendingBuffer = '';
+      };
+
+      function processLineItem(section, rawLine) {
+        let cleanLine = rawLine.replace(/^\s*(?:[-*+]|\d+[.)])\s+/, '').trim();
+        if (!cleanLine || /^---+$/.test(cleanLine) || /^<!--/.test(cleanLine) ||
+            /^<\/?(?:div|p|hr|br|img|picture|source)\b/i.test(cleanLine)) {
+          return;
+        }
+
+        cleanLine = cleanLine.replace(/^\[[ xX]\]\s*/, '');
+        const links = extractLinksFromLine(cleanLine);
+        let title = '', desc = '', url = '';
+
+        const pattern1 = cleanLine.match(/^\[([^\]]+)\]\((<[^>]+>|[^)\s]+)(?:\s+["'][^"']*["'])?\)\s*(?:[-–—:]\s*(.*))?$/);
+        if (pattern1) {
+          title = pattern1[1].trim();
+          url = pattern1[2].replace(/^<|>$/g, '');
+          desc = pattern1[3] || '';
+        } else {
+          const pattern2 = cleanLine.match(/^(.+?)\s*[-–—:]\s*(.+)$/);
+          if (pattern2) {
+            title = pattern2[1].trim();
+            desc = pattern2[2].trim();
+          } else {
+            title = cleanLine;
+            desc = '';
+          }
+
+          if (links.length > 0) {
+            const first = links[0];
+            title = first.title || title;
+            url = first.url;
+            desc = cleanLine
+              .replace(/\[([^\]]+)\]\([^)]+\)/, '')
+              .replace(/^[-–—:]\s*/, '')
+              .trim();
+          }
+        }
+
+        if (!title) return;
+
+        section.items.push({
+          rawTitle: title,
+          titleText: stripMarkdown(title),
+          rawDesc: desc,
+          descText: stripMarkdown(desc),
+          url: url.trim(),
+          extraLinks: links.filter(l => l.url !== url)
+        });
+      }
+
+      for (let i = 0; i < lines.length; i++) {
+        const raw = lines[i];
+        const trimmed = raw.trim();
+
+        const fenceMatch = trimmed.match(/^(```+|~~~+)/);
+        if (fenceMatch) {
+          flushBuffer();
+          const fenceChar = fenceMatch[1][0];
+          if (!inCodeBlock) {
+            inCodeBlock = true;
+            activeFenceChar = fenceChar;
+          } else if (activeFenceChar === fenceChar) {
+            inCodeBlock = false;
+            activeFenceChar = '';
+          }
+          continue;
+        }
+
+        if (inCodeBlock) continue;
+        if (!trimmed) {
+          flushBuffer();
+          continue;
+        }
+
+        const headingMatch = raw.match(/^(#{1,6})\s+(.+?)\s*#*$/);
+        if (headingMatch) {
+          flushBuffer();
+          const level = headingMatch[1].length;
+          const headingTitle = stripMarkdown(headingMatch[2]);
+          if (/^(contents|table of contents|فهرس المحتويات)$/i.test(headingTitle)) continue;
+
+          currentSection = {
+            title: headingTitle,
+            level: level,
+            id: 'sec-' + generateSlug(headingTitle) + '-' + sections.length,
+            items: []
+          };
+          sections.push(currentSection);
+          continue;
+        }
+
+        if (/^\[.*\]:\s*https?:\/\//.test(trimmed)) continue;
+
+        if (currentSection) {
+          if (/^\s*(?:[-*+]|\d+[.)])\s+/.test(raw)) {
+            flushBuffer();
+            pendingBuffer = raw.trim();
+          } else if (pendingBuffer && /^\s{2,}\S/.test(raw)) {
+            pendingBuffer += ' ' + trimmed;
+          } else {
+            flushBuffer();
+            if (!/^<\/?(?:div|p|hr|br|img)\b/i.test(trimmed)) {
+              pendingBuffer = trimmed;
+            }
+          }
+        }
+      }
+
+      flushBuffer();
+
+      if (sections.length === 0) {
+        const fallback = { title: 'الموارد العامة', level: 2, id: 'sec-general-0', items: [] };
+        for (const line of lines) {
+          if (line.trim()) processLineItem(fallback, line.trim());
+        }
+        if (fallback.items.length) sections.push(fallback);
+      }
+
+      return sections.filter(s => s.items.length > 0);
+    }
+
+    /* --------------------------------------------------------------------------
+       5. أيقونات SVG
+       -------------------------------------------------------------------------- */
+    const Icons = {
+      external: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>`,
+      github: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>`,
+      internal: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>`,
+      note: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle></svg>`
+    };
+
+    /* --------------------------------------------------------------------------
+       6. بناء الواجهة الرسومية (DocumentFragment)
+       -------------------------------------------------------------------------- */
+    function renderAppDocument() {
+      if (!AppState.currentDoc) return;
+      hideAlert();
+
+      AppState.sections = parseMarkdownSections(AppState.currentDoc.text);
+      AppState.allCardItems = [];
+
+      DOM.welcomeScreen.classList.add('is-hidden');
+      DOM.renderedSectionsContainer.innerHTML = '';
+      DOM.renderedSectionsContainer.classList.remove('is-hidden');
+      DOM.desktopToc.innerHTML = '';
+      DOM.mobileCategoriesList.innerHTML = '';
+
+      renderBreadcrumbs();
+
+      if (AppState.sections.length === 0) {
+        DOM.renderedSectionsContainer.innerHTML = `
+          <div class="welcome-hero" style="text-align: center;">
+            <h2>لم يتم العثور على أقسام أو روابط قابلة للعرض</h2>
+            <p style="color: var(--text-muted);">الملف لا يحتوي على عناصر متوافقة مع صيغة Markdown.</p>
+          </div>
+        `;
+        setStatus('لا توجد عناصر لعرضها.');
+        setSearchDisabled(true);
+        return;
+      }
+
+      const sectionsFragment = document.createDocumentFragment();
+      const tocDesktopFragment = document.createDocumentFragment();
+      const tocMobileFragment = document.createDocumentFragment();
+
+      let totalResources = 0;
+
+      AppState.sections.forEach((sec, secIdx) => {
+        totalResources += sec.items.length;
+
+        // 1. رابط الفهرس المكتبي
+        const tocItem = document.createElement('a');
+        tocItem.href = '#' + sec.id;
+        tocItem.className = `toc-item level-${Math.min(sec.level, 4)}`;
+        tocItem.dataset.targetId = sec.id;
+        tocItem.innerHTML = `
+          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(sec.title)}</span>
+          <span class="toc-badge">${sec.items.length}</span>
+        `;
+        tocItem.addEventListener('click', (e) => {
+          e.preventDefault();
+          scrollToSectionId(sec.id);
+        });
+        tocDesktopFragment.appendChild(tocItem);
+
+        // 2. بطاقة الفهرس في درج الهاتف
+        const mobileTocItem = document.createElement('button');
+        mobileTocItem.type = 'button';
+        mobileTocItem.className = `toc-item level-${Math.min(sec.level, 4)}`;
+        mobileTocItem.style.width = '100%';
+        mobileTocItem.style.textAlign = 'right';
+        mobileTocItem.innerHTML = `
+          <span style="font-weight: 600;">${escapeHtml(sec.title)}</span>
+          <span class="toc-badge">${sec.items.length} مورد</span>
+        `;
+        mobileTocItem.addEventListener('click', () => {
+          closeCategoriesSheet();
+          scrollToSectionId(sec.id);
+        });
+        tocMobileFragment.appendChild(mobileTocItem);
+
+        // 3. حاوية القسم
+        const secElement = document.createElement('section');
+        secElement.id = sec.id;
+        secElement.className = 'category-section';
+
+        const secHeader = document.createElement('div');
+        secHeader.className = `category-header level-${Math.min(sec.level, 4)}`;
+        secHeader.innerHTML = `
+          <div class="category-title-group">
+            <span class="category-index-badge">${String(secIdx + 1).padStart(2, '0')}</span>
+            <h2 class="category-title">${escapeHtml(sec.title)}</h2>
+          </div>
+          <div class="category-meta">
+            <span class="category-count" data-total="${sec.items.length}">${sec.items.length} مورد</span>
+            <span class="collapse-chevron">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </div>
+        `;
+
+        secHeader.addEventListener('click', () => {
+          secElement.classList.toggle('is-collapsed');
+        });
+
+        const cardsContainer = document.createElement('div');
+        cardsContainer.className = `cards-container view-${AppState.viewMode}`;
+
+        sec.items.forEach(item => {
+          const cardNode = createResourceCardNode(item, sec);
+          cardsContainer.appendChild(cardNode.element);
+          
+          AppState.allCardItems.push({
+            domCard: cardNode.element,
+            domSection: secElement,
+            titleEl: cardNode.titleEl,
+            descEl: cardNode.descEl,
+            rawTitle: item.rawTitle,
+            rawDesc: item.rawDesc,
+            normalizedSearchString: normalizeArabic(`${sec.title} ${item.titleText} ${item.descText}`)
+          });
+        });
+
+        secElement.appendChild(secHeader);
+        secElement.appendChild(cardsContainer);
+        sectionsFragment.appendChild(secElement);
+      });
+
+      DOM.renderedSectionsContainer.appendChild(sectionsFragment);
+      DOM.desktopToc.appendChild(tocDesktopFragment);
+      DOM.mobileCategoriesList.appendChild(tocMobileFragment);
+
+      DOM.desktopTocBadge.textContent = AppState.sections.length;
+      DOM.mobileTocCountBadge.textContent = AppState.sections.length;
+      DOM.mobileTocCountBadge.classList.remove('is-hidden');
+
+      setSearchDisabled(false);
+      DOM.backBtn.disabled = AppState.navStack.length === 0;
+
+      setStatus(`تم تحميل ${AppState.sections.length} فئة و ${totalResources} مورد.`);
+      initScrollSpy();
+    }
+
+    function createResourceCardNode(item, section) {
+      const resolved = item.url ? resolveUrl(item.url, AppState.currentDoc?.baseUrl) : '';
+      const repoInfo = item.url ? parseRepoInput(resolved) : null;
+      const isInternal = item.url && item.url.startsWith('#');
+
+      let cardEl;
+      let cardTypeClass = 'no-link';
+      let iconSvg = Icons.note;
+
+      if (repoInfo) {
+        cardTypeClass = 'repo is-action';
+        iconSvg = Icons.github;
+        cardEl = document.createElement('article');
+        cardEl.tabIndex = 0;
+        cardEl.setAttribute('role', 'button');
+        cardEl.addEventListener('click', () => openGithubRepository(repoInfo.owner, repoInfo.repo, true));
+      } else if (isInternal) {
+        cardTypeClass = 'internal is-action';
+        iconSvg = Icons.internal;
+        cardEl = document.createElement('article');
+        cardEl.tabIndex = 0;
+        cardEl.setAttribute('role', 'button');
+        const targetId = 'sec-' + generateSlug(item.url.slice(1));
+        cardEl.addEventListener('click', () => scrollToSectionId(targetId));
+      } else if (item.url && isSafeUrl(resolved)) {
+        cardTypeClass = 'external';
+        iconSvg = Icons.external;
+        cardEl = document.createElement('a');
+        cardEl.href = resolved;
+        cardEl.target = '_blank';
+        cardEl.rel = 'noopener noreferrer';
+      } else {
+        cardEl = document.createElement('article');
+      }
+
+      cardEl.className = `resource-card ${cardTypeClass}`;
+
+      const headerArea = document.createElement('div');
+      headerArea.className = 'card-header-area';
+
+      const titleEl = document.createElement('div');
+      titleEl.className = 'card-title-text';
+      titleEl.innerHTML = renderSafeInlineMarkdown(item.rawTitle);
+
+      const typeIconWrapper = document.createElement('span');
+      typeIconWrapper.className = 'card-type-icon';
+      typeIconWrapper.innerHTML = iconSvg;
+
+      headerArea.appendChild(titleEl);
+      headerArea.appendChild(typeIconWrapper);
+      cardEl.appendChild(headerArea);
+
+      let descEl = null;
+      if (item.rawDesc) {
+        descEl = document.createElement('div');
+        descEl.className = 'card-body-desc';
+        descEl.innerHTML = renderSafeInlineMarkdown(item.rawDesc);
+        cardEl.appendChild(descEl);
+      }
+
+      if (item.extraLinks && item.extraLinks.length > 0) {
+        const footerArea = document.createElement('div');
+        footerArea.className = 'card-footer-area';
+
+        item.extraLinks.forEach(extra => {
+          const safeExtraUrl = resolveUrl(extra.url, AppState.currentDoc?.baseUrl);
+          if (isSafeUrl(safeExtraUrl)) {
+            const chip = document.createElement('a');
+            chip.href = safeExtraUrl;
+            chip.target = '_blank';
+            chip.rel = 'noopener noreferrer';
+            chip.className = 'link-chip';
+            chip.innerHTML = `
+              <span>${escapeHtml(extra.title || 'رابط')}</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            `;
+            chip.addEventListener('click', (e) => e.stopPropagation());
+            footerArea.appendChild(chip);
+          }
+        });
+
+        cardEl.appendChild(footerArea);
+      }
+
+      return { element: cardEl, titleEl, descEl };
+    }
+
+    function renderBreadcrumbs() {
+      if (!AppState.currentDoc) {
+        DOM.breadcrumbNav.classList.add('is-hidden');
+        return;
+      }
+
+      DOM.breadcrumbNav.classList.remove('is-hidden');
+      DOM.breadcrumbNav.innerHTML = '';
+
+      const homeBtn = document.createElement('button');
+      homeBtn.className = 'breadcrumb-item';
+      homeBtn.innerHTML = `<span>الرئيسية</span>`;
+      homeBtn.addEventListener('click', resetToWelcome);
+      DOM.breadcrumbNav.appendChild(homeBtn);
+
+      AppState.navStack.forEach((doc, idx) => {
+        const sep = document.createElement('span');
+        sep.className = 'breadcrumb-separator';
+        sep.textContent = '‹';
+        DOM.breadcrumbNav.appendChild(sep);
+
+        const btn = document.createElement('button');
+        btn.className = 'breadcrumb-item';
+        btn.textContent = doc.title;
+        btn.addEventListener('click', () => {
+          AppState.currentDoc = AppState.navStack[idx];
+          AppState.navStack = AppState.navStack.slice(0, idx);
+          renderAppDocument();
+        });
+        DOM.breadcrumbNav.appendChild(btn);
+      });
+
+      const currentSep = document.createElement('span');
+      currentSep.className = 'breadcrumb-separator';
+      currentSep.textContent = '‹';
+      DOM.breadcrumbNav.appendChild(currentSep);
+
+      const currentSpan = document.createElement('span');
+      currentSpan.className = 'breadcrumb-item current';
+      currentSpan.textContent = AppState.currentDoc.title;
+      DOM.breadcrumbNav.appendChild(currentSpan);
+    }
+
+    /* --------------------------------------------------------------------------
+       7. محرك البحث المتزامن
+       -------------------------------------------------------------------------- */
+    function highlightMatchesInHtml(originalMarkdown, rawQuery) {
+      const safe = renderSafeInlineMarkdown(originalMarkdown);
+      if (!rawQuery.trim()) return safe;
+      try {
+        const regex = new RegExp(`(?![^<]*>)(${escapeRegex(rawQuery)})`, 'gi');
+        return safe.replace(regex, '<mark class="search-highlight">$1</mark>');
+      } catch {
+        return safe;
+      }
+    }
+
+    function escapeRegex(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    const performLiveSearch = debounce((query) => {
+      const rawQuery = (query !== undefined ? query : DOM.searchInputDesktop.value).trim();
+      AppState.searchQuery = rawQuery;
+      const normalizedQuery = normalizeArabic(rawQuery);
+
+      DOM.searchClearBtnDesktop.style.display = rawQuery ? 'flex' : 'none';
+      DOM.searchClearBtnMobile.style.display = rawQuery ? 'flex' : 'none';
+
+      let visibleTotal = 0;
+      const sectionCountMap = new Map();
+
+      AppState.allCardItems.forEach(item => {
+        const isMatch = !normalizedQuery || item.normalizedSearchString.includes(normalizedQuery);
+        if (isMatch) {
+          item.domCard.classList.remove('is-hidden');
+          visibleTotal++;
+          const count = sectionCountMap.get(item.domSection) || 0;
+          sectionCountMap.set(item.domSection, count + 1);
+
+          if (rawQuery) {
+            item.titleEl.innerHTML = highlightMatchesInHtml(item.rawTitle, rawQuery);
+            if (item.descEl) item.descEl.innerHTML = highlightMatchesInHtml(item.rawDesc, rawQuery);
+          } else {
+            item.titleEl.innerHTML = renderSafeInlineMarkdown(item.rawTitle);
+            if (item.descEl) item.descEl.innerHTML = renderSafeInlineMarkdown(item.rawDesc);
+          }
+        } else {
+          item.domCard.classList.add('is-hidden');
+        }
+      });
+
+      document.querySelectorAll('.category-section').forEach(secEl => {
+        const count = sectionCountMap.get(secEl) || 0;
+        const countBadge = secEl.querySelector('.category-count');
+        const total = countBadge ? countBadge.dataset.total : '0';
+
+        if (count > 0 || !normalizedQuery) {
+          secEl.classList.remove('is-hidden');
+          if (countBadge) {
+            countBadge.textContent = rawQuery ? `${count} من ${total}` : `${total} مورد`;
+          }
+        } else {
+          secEl.classList.add('is-hidden');
+        }
+      });
+
+      if (rawQuery) {
+        setStatus(`نتائج البحث: ${visibleTotal} مورد.`);
+      } else {
+        setStatus(`تم تحميل ${AppState.sections.length} فئة.`);
+      }
+    }, 150);
+
+    function setSearchDisabled(disabled) {
+      DOM.searchInputDesktop.disabled = disabled;
+      DOM.searchInputMobile.disabled = disabled;
+      if (disabled) {
+        DOM.searchInputDesktop.value = '';
+        DOM.searchInputMobile.value = '';
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       8. خاصية ScrollSpy
+       -------------------------------------------------------------------------- */
+    let scrollSpyObserver = null;
+
+    function initScrollSpy() {
+      if (scrollSpyObserver) scrollSpyObserver.disconnect();
+      scrollSpyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActiveTocItem(entry.target.id);
+        });
+      }, { rootMargin: '-70px 0px -70% 0px', threshold: 0 });
+
+      document.querySelectorAll('.category-section').forEach(sec => {
+        scrollSpyObserver.observe(sec);
+      });
+    }
+
+    function setActiveTocItem(activeId) {
+      if (!activeId || AppState.activeSectionId === activeId) return;
+      AppState.activeSectionId = activeId;
+      document.querySelectorAll('.toc-item').forEach(link => {
+        if (link.dataset.targetId === activeId) link.classList.add('is-active');
+        else link.classList.remove('is-active');
+      });
+    }
+
+    function scrollToSectionId(id) {
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setActiveTocItem(id);
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       9. استيراد الملفات و GitHub
+       -------------------------------------------------------------------------- */
+    async function loadLocalFile(file) {
+      if (!file) return;
+      if (!/\.(md|markdown|txt)$/i.test(file.name)) {
+        showAlert('يرجى اختيار ملف Markdown صالح بصيغة (.md أو .markdown أو .txt).');
+        return;
+      }
+
+      try {
+        const text = await file.text();
+        AppState.navStack = [];
+        AppState.currentDoc = { title: file.name, text, source: 'local', baseUrl: null };
+
+        try {
+          sessionStorage.setItem('awesome_cached_doc', JSON.stringify({ title: file.name, text }));
+          DOM.restoreSessionBtnDesktop.classList.remove('is-hidden');
+          DOM.restoreSessionCardMobile.classList.remove('is-hidden');
+        } catch {}
+
+        closeImportSheet();
+        renderAppDocument();
+      } catch (err) {
+        showAlert('تعذر قراءة الملف: ' + err.message);
+      }
+    }
+
+    async function openGithubRepository(owner, repo, pushToNav = false) {
+      if (AppState.abortController) AppState.abortController.abort();
+      AppState.abortController = new AbortController();
+
+      hideAlert();
+      showSkeleton();
+      setStatus(`جاري جلب README من ${owner}/${repo}...`);
+      closeImportSheet();
+
+      try {
+        const apiUrl = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/readme`;
+        const res = await fetch(apiUrl, {
+          headers: { 'Accept': 'application/vnd.github+json' },
+          signal: AppState.abortController.signal
+        });
+
+        if (!res.ok) {
+          if (res.status === 404) throw new Error('لم يتم العثور على ملف README في هذا المستودع.');
+          if (res.status === 403 || res.status === 429) throw new Error('تم تجاوز حد طلبات GitHub API. انتظر دقيقة وحاول مجدداً.');
+          throw new Error(`خطأ من GitHub (${res.status}).`);
+        }
+
+        const data = await res.json();
+        let markdownContent = '';
+
+        if (data.content && data.encoding === 'base64') {
+          const binary = atob(data.content.replace(/\s/g, ''));
+          const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+          markdownContent = new TextDecoder('utf-8').decode(bytes);
+        } else if (data.download_url) {
+          const rawRes = await fetch(data.download_url, { signal: AppState.abortController.signal });
+          if (!rawRes.ok) throw new Error('فشل قراءة محتوى المستودع.');
+          markdownContent = await rawRes.text();
+        } else {
+          throw new Error('لا يوجد محتوى نصي متاح.');
+        }
+
+        if (pushToNav && AppState.currentDoc) {
+          AppState.navStack.push(AppState.currentDoc);
+        }
+
+        AppState.currentDoc = {
+          title: `${owner}/${repo}`,
+          text: markdownContent,
+          source: 'github',
+          baseUrl: `https://github.com/${owner}/${repo}/raw/HEAD/`
+        };
+
+        renderAppDocument();
+      } catch (err) {
+        if (err.name === 'AbortError') return;
+        showAlert(err.message || 'حدث خطأ غير متوقع.');
+        setStatus('فشلت العملية.');
+      } finally {
+        hideSkeleton();
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       10. إدارة الواجهة وتجربة الهاتف (Mobile Sheets & Tabs)
+       -------------------------------------------------------------------------- */
+    function setStatus(text) {
+      DOM.desktopStatusText.textContent = text;
+    }
+
+    function showAlert(msg) {
+      DOM.alertContainer.innerHTML = `
+        <div class="toast-alert">
+          <span>${escapeHtml(msg)}</span>
+          <button type="button" onclick="this.parentElement.remove()" style="padding:4px; font-weight:700;">✕</button>
+        </div>
+      `;
+      DOM.alertContainer.classList.remove('is-hidden');
+    }
+
+    function hideAlert() {
+      DOM.alertContainer.classList.add('is-hidden');
+    }
+
+    function showSkeleton() {
+      DOM.skeletonLoader.classList.remove('is-hidden');
+      DOM.renderedSectionsContainer.classList.add('is-hidden');
+      DOM.welcomeScreen.classList.add('is-hidden');
+    }
+
+    function hideSkeleton() {
+      DOM.skeletonLoader.classList.add('is-hidden');
+    }
+
+    function resetToWelcome() {
+      AppState.currentDoc = null;
+      AppState.navStack = [];
+      AppState.sections = [];
+      AppState.allCardItems = [];
+      setSearchDisabled(true);
+      DOM.backBtn.disabled = true;
+      DOM.breadcrumbNav.classList.add('is-hidden');
+      DOM.renderedSectionsContainer.classList.add('is-hidden');
+      DOM.welcomeScreen.classList.remove('is-hidden');
+      DOM.desktopToc.innerHTML = '<span style="font-size: 0.85rem; color: var(--text-dim); padding: 10px 0;">سيظهر الفهرس الهرمي بعد تحميل الملف.</span>';
+      DOM.mobileCategoriesList.innerHTML = '<span style="font-size: 0.9rem; color: var(--text-dim); text-align: center; padding: 20px 0;">لم يتم تحميل ملف بعد.</span>';
+      DOM.desktopTocBadge.textContent = '0';
+      DOM.mobileTocCountBadge.textContent = '0';
+      DOM.mobileTocCountBadge.classList.add('is-hidden');
+      setStatus('جاهز لاستعراض الملفات');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function applyTheme(theme) {
+      AppState.theme = theme;
+      DOM.html.dataset.theme = theme;
+      localStorage.setItem('awesome_theme', theme);
+      if (theme === 'light') {
+        DOM.sunIcon.classList.remove('is-hidden');
+        DOM.moonIcon.classList.add('is-hidden');
+        DOM.themeToggleSheet.textContent = '🌙 وضع داكن';
+      } else {
+        DOM.sunIcon.classList.add('is-hidden');
+        DOM.moonIcon.classList.remove('is-hidden');
+        DOM.themeToggleSheet.textContent = '☀️ وضع فاتح';
+      }
+    }
+
+    function applyViewMode(mode) {
+      AppState.viewMode = mode;
+      localStorage.setItem('awesome_view_mode', mode);
+      DOM.viewModeLabelMobile.textContent = mode === 'grid' ? 'الوضع الحالي: شبكة' : 'الوضع الحالي: قائمة';
+      document.querySelectorAll('.cards-container').forEach(c => {
+        c.className = `cards-container view-${mode}`;
+      });
+    }
+
+    // إدارة أدراج الهاتف (Bottom Sheets)
+    function openCategoriesSheet() {
+      DOM.categoriesSheetBackdrop.classList.add('is-open');
+    }
+    function closeCategoriesSheet() {
+      DOM.categoriesSheetBackdrop.classList.remove('is-open');
+    }
+
+    function openImportSheet() {
+      DOM.importSheetBackdrop.classList.add('is-open');
+    }
+    function closeImportSheet() {
+      DOM.importSheetBackdrop.classList.remove('is-open');
+    }
+
+    function openSettingsSheet() {
+      DOM.settingsSheetBackdrop.classList.add('is-open');
+    }
+    function closeSettingsSheet() {
+      DOM.settingsSheetBackdrop.classList.remove('is-open');
+    }
+
+    function closeAllSheets() {
+      closeCategoriesSheet();
+      closeImportSheet();
+      closeSettingsSheet();
+    }
+
+    /* --------------------------------------------------------------------------
+       11. ربط مستمعات الأحداث
+       -------------------------------------------------------------------------- */
+    // هيدر وشعار
+    DOM.brandBtn.addEventListener('click', resetToWelcome);
+    DOM.themeToggle.addEventListener('click', () => applyTheme(AppState.theme === 'dark' ? 'light' : 'dark'));
+    DOM.themeToggleSheet.addEventListener('click', () => applyTheme(AppState.theme === 'dark' ? 'light' : 'dark'));
+    
+    DOM.viewModeToggleSheet.addEventListener('click', () => {
+      applyViewMode(AppState.viewMode === 'grid' ? 'list' : 'grid');
+    });
+
+    // تبديل وحقل بحث الهاتف
+    DOM.mobileSearchToggleBtn.addEventListener('click', () => {
+      DOM.mobileSearchBar.classList.toggle('is-open');
+      if (DOM.mobileSearchBar.classList.contains('is-open')) {
+        DOM.searchInputMobile.focus();
+      }
+    });
+
+    DOM.closeMobileSearchBtn.addEventListener('click', () => {
+      DOM.mobileSearchBar.classList.remove('is-open');
+      DOM.searchInputMobile.value = '';
+      performLiveSearch('');
+    });
+
+    // البحث المكتبي والهاتفي
+    DOM.searchInputDesktop.addEventListener('input', (e) => {
+      DOM.searchInputMobile.value = e.target.value;
+      performLiveSearch(e.target.value);
+    });
+
+    DOM.searchInputMobile.addEventListener('input', (e) => {
+      DOM.searchInputDesktop.value = e.target.value;
+      performLiveSearch(e.target.value);
+    });
+
+    DOM.searchClearBtnDesktop.addEventListener('click', () => {
+      DOM.searchInputDesktop.value = '';
+      DOM.searchInputMobile.value = '';
+      performLiveSearch('');
+      DOM.searchInputDesktop.focus();
+    });
+
+    DOM.searchClearBtnMobile.addEventListener('click', () => {
+      DOM.searchInputDesktop.value = '';
+      DOM.searchInputMobile.value = '';
+      performLiveSearch('');
+      DOM.searchInputMobile.focus();
+    });
+
+    // اختصار لوحة المفاتيح
+    window.addEventListener('keydown', (e) => {
+      if ((e.key === '/' || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k')) &&
+          document.activeElement.tagName !== 'INPUT') {
+        e.preventDefault();
+        if (window.innerWidth <= 768) {
+          DOM.mobileSearchBar.classList.add('is-open');
+          DOM.searchInputMobile.focus();
+        } else {
+          DOM.searchInputDesktop.focus();
+        }
+      }
+    });
+
+    // زر الرجوع
+    DOM.backBtn.addEventListener('click', () => {
+      if (!AppState.navStack.length) return;
+      AppState.currentDoc = AppState.navStack.pop();
+      renderAppDocument();
+    });
+
+    // أزرار رفع الملف
+    DOM.uploadTriggerBtn.addEventListener('click', () => DOM.fileInput.click());
+    DOM.heroUploadBtn.addEventListener('click', () => DOM.fileInput.click());
+    DOM.mobileUploadBtn.addEventListener('click', () => DOM.fileInput.click());
+    
+    DOM.heroGithubBtn.addEventListener('click', () => {
+      if (window.innerWidth <= 768) openImportSheet();
+      else DOM.githubRepoInputDesktop.focus();
+    });
+
+    DOM.fileInput.addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (file) {
+        loadLocalFile(file);
+        DOM.fileInput.value = '';
+      }
+    });
+
+    // استيراد من GitHub (ديسكتوب)
+    DOM.openGithubBtnDesktop.addEventListener('click', () => {
+      const parsed = parseRepoInput(DOM.githubRepoInputDesktop.value);
+      if (!parsed) return showAlert('أدخل مستودع صحيح بصيغة owner/repo');
+      openGithubRepository(parsed.owner, parsed.repo, !!AppState.currentDoc);
+    });
+
+    // استيراد من GitHub (هاتف)
+    DOM.openGithubBtnMobile.addEventListener('click', () => {
+      const parsed = parseRepoInput(DOM.githubRepoInputMobile.value);
+      if (!parsed) return showAlert('أدخل مستودع صحيح بصيغة owner/repo');
+      openGithubRepository(parsed.owner, parsed.repo, !!AppState.currentDoc);
+    });
+
+    // استعادة الجلسة
+    const handleRestoreSession = () => {
+      try {
+        const cached = JSON.parse(sessionStorage.getItem('awesome_cached_doc') || '{}');
+        if (cached && cached.text) {
+          AppState.navStack = [];
+          AppState.currentDoc = { title: cached.title || 'الملف المستعاد', text: cached.text, source: 'local', baseUrl: null };
+          closeImportSheet();
+          renderAppDocument();
+        }
+      } catch {
+        showAlert('تعذرت استعادة الجلسة.');
+      }
+    };
+
+    DOM.restoreSessionBtnDesktop.addEventListener('click', handleRestoreSession);
+    DOM.restoreSessionBtnMobile.addEventListener('click', handleRestoreSession);
+
+    // ربط شريط الموبايل السفلي
+    DOM.mobileTabHome.addEventListener('click', () => {
+      closeAllSheets();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    DOM.mobileTabCategories.addEventListener('click', () => {
+      closeAllSheets();
+      openCategoriesSheet();
+    });
+
+    DOM.mobileTabImport.addEventListener('click', () => {
+      closeAllSheets();
+      openImportSheet();
+    });
+
+    DOM.mobileTabView.addEventListener('click', () => {
+      closeAllSheets();
+      openSettingsSheet();
+    });
+
+    // إغلاق الأدراج عند النقر على الخلفية أو زر الإغلاق
+    DOM.closeCategoriesSheetBtn.addEventListener('click', closeCategoriesSheet);
+    DOM.categoriesSheetBackdrop.addEventListener('click', (e) => {
+      if (e.target === DOM.categoriesSheetBackdrop) closeCategoriesSheet();
+    });
+
+    DOM.closeImportSheetBtn.addEventListener('click', closeImportSheet);
+    DOM.importSheetBackdrop.addEventListener('click', (e) => {
+      if (e.target === DOM.importSheetBackdrop) closeImportSheet();
+    });
+
+    DOM.closeSettingsSheetBtn.addEventListener('click', closeSettingsSheet);
+    DOM.settingsSheetBackdrop.addEventListener('click', (e) => {
+      if (e.target === DOM.settingsSheetBackdrop) closeSettingsSheet();
+    });
+
+    /* --------------------------------------------------------------------------
+       12. التهيئة عند التحميل
+       -------------------------------------------------------------------------- */
+    function initializeApp() {
+      applyTheme(AppState.theme);
+      applyViewMode(AppState.viewMode);
+
+      try {
+        if (sessionStorage.getItem('awesome_cached_doc')) {
+          DOM.restoreSessionBtnDesktop.classList.remove('is-hidden');
+          DOM.restoreSessionCardMobile.classList.remove('is-hidden');
+        }
+      } catch {}
+
+      resetToWelcome();
+    }
+
+    document.addEventListener('DOMContentLoaded', initializeApp);
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+      initializeApp();
+    }
+  </script>
+</body>
+</html>
